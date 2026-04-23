@@ -69,8 +69,10 @@ RUN set -eu; \
     php -m; \
     printf '\n=== Verifying required extensions ===\n'; \
     FAIL=0; \
+    # Use extension_loaded() — works for Zend extensions (opcache) too,
+    # which don't appear in `php -m` under their install name.
     for ext in zip pdo_pgsql pgsql gd bcmath intl exif pcntl opcache; do \
-        if php -m | grep -qxF "$ext"; then \
+        if php -r "exit(extension_loaded('$ext') ? 0 : 1);" 2>/dev/null; then \
             printf '  [OK]      %s\n' "$ext"; \
         else \
             printf '  [MISSING] %s\n' "$ext"; \
