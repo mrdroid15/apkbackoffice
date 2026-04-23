@@ -1,3 +1,5 @@
+.playwright-mcp
+.remember
 /.phpunit.cache
 /node_modules
 /public/build
