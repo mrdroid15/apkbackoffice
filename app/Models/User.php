@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -44,5 +46,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Gate access to Filament's admin panel.
+     * Every seeded/registered user here is a backoffice admin — there's no
+     * front-of-house user role to exclude, so allow all. Tighten later by
+     * checking a role/permission or an email allowlist if needed.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
     }
 }
