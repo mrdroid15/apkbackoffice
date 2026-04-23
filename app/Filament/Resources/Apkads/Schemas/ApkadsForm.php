@@ -16,9 +16,11 @@ class ApkadsForm
                     ->required(),
                 TextInput::make('packagename')
                     ->required(),
-                FileUpload::make('image')
+                 FileUpload::make('image')
                     ->image()
-                    ->required(),
+					->disk('public')
+					->directory('uploads') // Files will be in public/storage/uploads
+					->visibility('public'),
                 TextInput::make('link')
                     ->required(),
             ]);
