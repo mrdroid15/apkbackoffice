@@ -40,10 +40,10 @@ RUN apk add --no-cache \
         oniguruma
 
 # 2. Build-time headers as a virtual group, compile extensions, wipe build deps.
-#    Final assertion (`php -m | grep -q …`) fails the build immediately if an
-#    extension didn't actually load — much easier to debug than a later
-#    composer "ext-zip missing" error.
-RUN set -eux; \
+#    After install, loop-verify every required extension and print an explicit
+#    [OK]/[MISSING] line — avoids `grep -q`'s silent failure mode (which just
+#    exits 255 with no output and wastes 3 minutes of debugging time).
+RUN set -eu; \
     apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         icu-dev \
@@ -65,10 +65,23 @@ RUN set -eux; \
         exif \
         pcntl \
         opcache; \
-    php -m | grep -q '^zip$'; \
-    php -m | grep -q '^pdo_pgsql$'; \
-    php -m | grep -q '^gd$'; \
-    apk del --no-network .build-deps
+    printf '\n=== Loaded PHP modules ===\n'; \
+    php -m; \
+    printf '\n=== Verifying required extensions ===\n'; \
+    FAIL=0; \
+    for ext in zip pdo_pgsql pgsql gd bcmath intl exif pcntl opcache; do \
+        if php -m | grep -qxF "$ext"; then \
+            printf '  [OK]      %s\n' "$ext"; \
+        else \
+            printf '  [MISSING] %s\n' "$ext"; \
+            FAIL=1; \
+        fi; \
+    done; \
+    if [ "$FAIL" -ne 0 ]; then \
+        echo "One or more required PHP extensions failed to load. Aborting build."; \
+        exit 1; \
+    fi; \
+    apk del .build-deps
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
