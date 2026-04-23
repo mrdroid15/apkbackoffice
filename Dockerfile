@@ -18,7 +18,9 @@ ENV APP_ROOT=/var/www/html \
     COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_NO_INTERACTION=1
 
-# System deps + PHP extension build deps
+# 1. Runtime packages — these stay in the final image (never removed).
+#    Installed explicitly so they aren't "orphaned" dependencies of -dev
+#    packages and accidentally swept away by `apk del` later.
 RUN apk add --no-cache \
         nginx \
         supervisor \
@@ -26,6 +28,24 @@ RUN apk add --no-cache \
         git \
         curl \
         tini \
+        zip \
+        unzip \
+        icu-libs \
+        libzip \
+        libpq \
+        libpng \
+        libjpeg-turbo \
+        libwebp \
+        freetype \
+        oniguruma
+
+# 2. Build-time headers as a virtual group, compile extensions, wipe build deps.
+#    Final assertion (`php -m | grep -q …`) fails the build immediately if an
+#    extension didn't actually load — much easier to debug than a later
+#    composer "ext-zip missing" error.
+RUN set -eux; \
+    apk add --no-cache --virtual .build-deps \
+        $PHPIZE_DEPS \
         icu-dev \
         libzip-dev \
         postgresql-dev \
@@ -33,11 +53,9 @@ RUN apk add --no-cache \
         libpng-dev \
         libjpeg-turbo-dev \
         libwebp-dev \
-        freetype-dev \
-        zip \
-        unzip \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install -j"$(nproc)" \
+        freetype-dev; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp; \
+    docker-php-ext-install -j"$(nproc)" \
         pdo_pgsql \
         pgsql \
         gd \
@@ -46,15 +64,11 @@ RUN apk add --no-cache \
         intl \
         exif \
         pcntl \
-        opcache \
-    && apk del --no-cache \
-        icu-dev \
-        libzip-dev \
-        oniguruma-dev \
-        libpng-dev \
-        libjpeg-turbo-dev \
-        libwebp-dev \
-        freetype-dev
+        opcache; \
+    php -m | grep -q '^zip$'; \
+    php -m | grep -q '^pdo_pgsql$'; \
+    php -m | grep -q '^gd$'; \
+    apk del --no-network .build-deps
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
