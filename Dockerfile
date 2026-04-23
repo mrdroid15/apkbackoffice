@@ -69,9 +69,11 @@ RUN set -eu; \
     php -m; \
     printf '\n=== Verifying required extensions ===\n'; \
     FAIL=0; \
-    # Use extension_loaded() — works for Zend extensions (opcache) too,
-    # which don't appear in `php -m` under their install name.
-    for ext in zip pdo_pgsql pgsql gd bcmath intl exif pcntl opcache; do \
+    # Only verify extensions that depend on external Alpine packages — that's
+    # where runtime-lib orphaning can silently break things. opcache is a
+    # bundled Zend extension that isn't loaded in CLI by default, so probing
+    # it here produces a false-negative; trust docker-php-ext-install for it.
+    for ext in zip pdo_pgsql pgsql gd bcmath intl exif pcntl; do \
         if php -r "exit(extension_loaded('$ext') ? 0 : 1);" 2>/dev/null; then \
             printf '  [OK]      %s\n' "$ext"; \
         else \
@@ -79,6 +81,14 @@ RUN set -eu; \
             FAIL=1; \
         fi; \
     done; \
+    # opcache specifically — it's a Zend extension not loaded in CLI, so just
+    # assert the .ini file was written by docker-php-ext-install.
+    if [ -f /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini ]; then \
+        printf '  [OK]      opcache (ini present)\n'; \
+    else \
+        printf '  [MISSING] opcache (ini file not written)\n'; \
+        FAIL=1; \
+    fi; \
     if [ "$FAIL" -ne 0 ]; then \
         echo "One or more required PHP extensions failed to load. Aborting build."; \
         exit 1; \
