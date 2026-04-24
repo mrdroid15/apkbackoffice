@@ -104,7 +104,12 @@ WORKDIR $APP_ROOT
 COPY . $APP_ROOT
 
 # PHP deps (production)
-RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-progress
+# Install PHP deps. Use `install` when composer.lock matches composer.json
+# (fast, reproducible), fall back to `update` when composer.json has a newer
+# package the lockfile doesn't know about yet — this avoids needing to
+# regenerate composer.lock locally whenever a dependency is added.
+RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-progress \
+ || composer update  --no-dev --optimize-autoloader --prefer-dist --no-progress
 
 # Compiled frontend assets from the node stage
 COPY --from=assets /app/public/build $APP_ROOT/public/build

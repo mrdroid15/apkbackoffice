@@ -18,6 +18,9 @@ class ApkadsForm
                     ->required(),
                 FileUpload::make('image')
                     ->image()
+                    ->disk('s3')
+                    ->directory('apkads/images')
+                    ->visibility('private')
                     ->required(),
                 TextInput::make('link')
                     ->required(),
