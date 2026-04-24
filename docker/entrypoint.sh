@@ -25,10 +25,10 @@ fi
 # Storage symlink (idempotent)
 php artisan storage:link || true
 
-# Clear stale caches from the build image before recaching
-php artisan config:clear  || true
-php artisan route:clear   || true
-php artisan view:clear    || true
+# Nuke every cache file baked into the image before any new work. This keeps
+# us deterministic across redeploys — no stale routes-v7.php from the build
+# image surviving into the running container.
+php artisan optimize:clear
 
 # Run migrations against the linked database
 php artisan migrate --force --no-interaction
@@ -36,13 +36,24 @@ php artisan migrate --force --no-interaction
 # Seed the admin user (idempotent — uses updateOrCreate against ADMIN_EMAIL)
 php artisan db:seed --force --no-interaction --class=Database\\Seeders\\AdminUserSeeder || true
 
-# Production caches (after migrate so any new config is picked up)
+# Production caches.
+#
+# WHY route:cache IS DELIBERATELY ABSENT:
+# Filament v4 registers Livewire components (e.g. filament.auth.pages.login)
+# inside PanelsServiceProvider::boot(). route:cache compiles route files once
+# in CLI and writes a snapshot; but the Livewire component *registry* isn't
+# persisted the same way. After route:cache, POST /livewire/update can throw
+# ComponentNotFoundException for auth components on fresh container boot.
+# Skipping route:cache costs ~10ms per request (fine for an admin panel) and
+# eliminates this entire failure mode. Re-enable only if you audit Livewire
+# component resolution end-to-end.
 php artisan config:cache
-php artisan route:cache
 php artisan view:cache
 
-# Filament v4 asset optimisation
-php artisan filament:optimize || true
+# Filament asset + icon + component cache. Must run AFTER config:cache so it
+# reads the final config; runs without `|| true` because a failure here means
+# the panel will 500 at login time — louder is better than silent.
+php artisan filament:optimize
 
 # Re-assert ownership in case a mounted volume came up root-owned
 chown -R www-data:www-data storage bootstrap/cache || true
