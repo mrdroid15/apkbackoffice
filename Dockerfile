@@ -108,8 +108,8 @@ COPY . $APP_ROOT
 # (fast, reproducible), fall back to `update` when composer.json has a newer
 # package the lockfile doesn't know about yet — this avoids needing to
 # regenerate composer.lock locally whenever a dependency is added.
-RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-progress \
- || composer update  --no-dev --optimize-autoloader --prefer-dist --no-progress
+RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-progress --no-audit \
+ || composer update  --no-dev --optimize-autoloader --prefer-dist --no-progress --no-audit
 
 # Compiled frontend assets from the node stage
 COPY --from=assets /app/public/build $APP_ROOT/public/build
