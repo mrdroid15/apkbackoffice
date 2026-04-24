@@ -1,0 +1,40 @@
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+
+# Dependencies are installed inside the image
+vendor
+node_modules
+
+# Local env + local DBs never go in the image
+.env
+.env.local
+.env.*.local
+database/database.sqlite
+database/*.sqlite
+
+# Runtime artefacts
+storage/logs/*
+!storage/logs/.gitignore
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/testing/*
+bootstrap/cache/*.php
+
+# Dev tooling
+tests
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache
+.idea
+.vscode
+
+# Docs & misc
+*.md
+docker-compose*.yml
+
+# Remember-plugin logs
+.remember

@@ -1,0 +1,276 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - link "Coolify" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - combobox [ref=e7]:
+          - option "Switch team" [disabled]
+          - option "Root Team" [selected]
+          - option "Test"
+      - button "Open sidebar" [ref=e8]:
+        - generic [ref=e9]: Open sidebar
+        - img [ref=e10]
+    - main [ref=e12]:
+      - generic [ref=e14]:
+        - heading "Configuration" [level=1] [ref=e15]
+        - navigation [ref=e16]:
+          - navigation [ref=e17]:
+            - list [ref=e18]:
+              - listitem [ref=e19]:
+                - generic [ref=e20]:
+                  - link "UAT Deployment" [ref=e21] [cursor=pointer]:
+                    - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk
+                  - button [ref=e22]:
+                    - img [ref=e23]
+              - listitem [ref=e25]:
+                - generic [ref=e26]:
+                  - link "apk bo" [ref=e27] [cursor=pointer]:
+                    - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss
+                  - button [ref=e28]:
+                    - img [ref=e29]
+              - listitem [ref=e31]:
+                - generic [ref=e32]:
+                  - link "mrdroid15/apkbackoffice:main-x88oco84ss08swocok8wkggo (localhost)" [ref=e33] [cursor=pointer]:
+                    - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co
+                  - button [ref=e34]:
+                    - img [ref=e35]
+              - generic [ref=e39]: Exited
+          - generic [ref=e40]:
+            - navigation [ref=e41]:
+              - link "Configuration" [ref=e42] [cursor=pointer]:
+                - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co
+              - link "Deployments" [ref=e43] [cursor=pointer]:
+                - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/deployment
+              - link "Logs" [ref=e44] [cursor=pointer]:
+                - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/logs
+                - generic [ref=e45]: Logs
+              - link "Terminal" [ref=e46] [cursor=pointer]:
+                - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/terminal
+              - button "Links" [ref=e48]:
+                - generic [ref=e49]: Links
+                - img [ref=e50]
+            - generic [ref=e52]:
+              - button "Advanced" [ref=e55]:
+                - generic [ref=e56]: Advanced
+                - img [ref=e57]
+              - button "Deploy" [ref=e60] [cursor=pointer]:
+                - img [ref=e61]
+                - text: Deploy
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - link "General" [ref=e66] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co
+            - link "Advanced" [ref=e67] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/advanced
+            - link "Environment Variables" [ref=e68] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/environment-variables
+            - link "Persistent Storage" [ref=e69] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/persistent-storage
+            - link "Git Source" [ref=e70] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/source
+            - link "Servers" [ref=e71] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/servers
+            - link "Scheduled Tasks" [ref=e72] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/scheduled-tasks
+            - link "Webhooks" [ref=e73] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/webhooks
+            - link "Preview Deployments" [ref=e74] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/preview-deployments
+            - link "Healthcheck" [ref=e75] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/healthcheck
+            - link "Rollback" [ref=e76] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/rollback
+            - link "Resource Limits" [ref=e77] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/resource-limits
+            - link "Resource Operations" [ref=e78] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/resource-operations
+            - link "Metrics" [ref=e79] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/metrics
+            - link "Tags" [ref=e80] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/tags
+            - link "Danger Zone" [ref=e81] [cursor=pointer]:
+              - /url: http://134.209.97.63:8000/project/so8coos4ks84ckkg00gssskk/environment/ekgkkws8k8ok44044800kkss/application/m0kko08so0gsc0kwscsws0co/danger
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - heading "General" [level=2] [ref=e86]
+              - button "Save" [ref=e87] [cursor=pointer]
+            - generic [ref=e88]: General configuration for your application.
+            - generic [ref=e89]:
+              - generic [ref=e90]:
+                - generic [ref=e91]:
+                  - generic [ref=e92]:
+                    - text: Name
+                    - generic [ref=e93]: "*"
+                  - textbox [ref=e94]: mrdroid15/apkbackoffice:main-x88oco84ss08swocok8wkggo
+                - generic [ref=e95]:
+                  - generic [ref=e96]: Description
+                  - textbox [ref=e97]
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - text: Build Pack
+                  - generic [ref=e102]: "*"
+                - combobox [ref=e103]:
+                  - option "Nixpacks"
+                  - option "Static"
+                  - option "Dockerfile" [selected]
+                  - option "Docker Compose"
+              - generic [ref=e105]:
+                - generic [ref=e106]:
+                  - generic [ref=e107]:
+                    - text: Domains
+                    - img [ref=e110] [cursor=pointer]
+                  - textbox "https://coolify.io" [ref=e112]: http://m0kko08so0gsc0kwscsws0co.134.209.97.63.sslip.io
+                - button "Generate Domain" [ref=e113] [cursor=pointer]
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - generic [ref=e116]:
+                    - text: Direction
+                    - generic [ref=e117]: "*"
+                    - img [ref=e120] [cursor=pointer]
+                  - combobox [ref=e122]:
+                    - option "Allow www & non-www." [selected]
+                    - option "Redirect to www."
+                    - option "Redirect to non-www."
+                - button "Set Direction" [ref=e124] [cursor=pointer]:
+                  - generic [ref=e125]: Set Direction
+              - generic [ref=e126]:
+                - heading "Docker Registry" [level=3] [ref=e127]
+                - img [ref=e130] [cursor=pointer]
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - generic [ref=e134]:
+                    - text: Docker Image
+                    - img [ref=e137] [cursor=pointer]
+                  - textbox "Empty means it won't push the image to a docker registry." [ref=e139]
+                - generic [ref=e140]:
+                  - generic [ref=e141]:
+                    - text: Docker Image Tag
+                    - img [ref=e144] [cursor=pointer]
+                  - textbox "Empty means only push commit sha tag." [ref=e146]
+              - generic [ref=e147]:
+                - heading "Build" [level=3] [ref=e148]
+                - generic [ref=e149]:
+                  - generic [ref=e150]:
+                    - generic [ref=e151]:
+                      - generic [ref=e152]:
+                        - text: Base Directory
+                        - img [ref=e155] [cursor=pointer]
+                      - textbox / [ref=e157]
+                    - generic [ref=e158]:
+                      - generic [ref=e159]:
+                        - text: Dockerfile Location
+                        - img [ref=e162] [cursor=pointer]
+                      - textbox "/Dockerfile" [ref=e164]
+                    - generic [ref=e165]:
+                      - generic [ref=e166]:
+                        - text: Docker Build Stage Target
+                        - img [ref=e169] [cursor=pointer]
+                      - textbox [ref=e171]
+                  - generic [ref=e172]:
+                    - generic [ref=e173]:
+                      - text: Custom Docker Options
+                      - img [ref=e176] [cursor=pointer]
+                    - textbox "--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp" [ref=e178]
+                  - generic [ref=e181]:
+                    - generic [ref=e182]:
+                      - text: Use a Build Server?
+                      - img [ref=e185] [cursor=pointer]
+                    - checkbox "Use a Build Server?" [ref=e187] [cursor=pointer]
+              - heading "Network" [level=3] [ref=e188]
+              - generic [ref=e189]:
+                - generic [ref=e190]:
+                  - generic [ref=e191]:
+                    - text: Ports Exposes
+                    - generic [ref=e192]: "*"
+                    - img [ref=e195] [cursor=pointer]
+                  - textbox "3000,3001" [ref=e197]: "8080"
+                - generic [ref=e198]:
+                  - generic [ref=e199]:
+                    - text: Ports Mappings
+                    - img [ref=e202] [cursor=pointer]
+                  - textbox "3000:3000" [ref=e204]
+                - generic [ref=e205]:
+                  - generic [ref=e206]:
+                    - text: Network Aliases
+                    - img [ref=e209] [cursor=pointer]
+                  - textbox [ref=e211]
+              - heading "HTTP Basic Authentication" [level=3] [ref=e212]
+              - generic [ref=e216]:
+                - generic [ref=e217]:
+                  - text: Enable
+                  - img [ref=e220] [cursor=pointer]
+                - checkbox "Enable" [ref=e222] [cursor=pointer]
+              - generic [ref=e223]:
+                - generic [ref=e224]: Container Labels
+                - code [ref=e266]:
+                  - generic [ref=e267]:
+                    - generic [ref=e269]:
+                      - generic [ref=e272]: "1"
+                      - generic [ref=e274]: "2"
+                      - generic [ref=e276]: "3"
+                      - generic [ref=e279]: "4"
+                      - generic [ref=e282]: "5"
+                      - generic [ref=e285]: "6"
+                      - generic [ref=e289]: "7"
+                      - generic [ref=e292]: "8"
+                      - generic [ref=e295]: "9"
+                      - generic [ref=e297]: "10"
+                      - generic [ref=e299]: "11"
+                      - generic [ref=e301]: "12"
+                      - generic [ref=e303]: "13"
+                      - generic [ref=e305]: "14"
+                      - generic [ref=e308]: "15"
+                    - generic [ref=e334]:
+                      - generic [ref=e336]: traefik.enable=true
+                      - generic [ref=e338]: traefik.http.middlewares.gzip.compress=true
+                      - generic [ref=e340]: traefik.http.middlewares.redirect-to-https.redirectscheme.
+                      - generic [ref=e342]: scheme=https
+                      - generic [ref=e344]: traefik.http.routers.http-0-m0kko08so0gsc0kwscsws0co.
+                      - generic [ref=e346]: entryPoints=http
+                      - generic [ref=e348]: traefik.http.routers.http-0-m0kko08so0gsc0kwscsws0co.
+                      - generic [ref=e350]: middlewares=gzip
+                      - generic [ref=e352]: traefik.http.routers.http-0-m0kko08so0gsc0kwscsws0co.
+                      - generic [ref=e354]: "rule=Host(`m0kko08so0gsc0kwscsws0co.134.209.97.63.sslip."
+                      - generic [ref=e356]: "io`) && PathPrefix(`/`)"
+                      - generic [ref=e358]: traefik.http.routers.http-0-m0kko08so0gsc0kwscsws0co.
+                      - generic [ref=e360]: service=http-0-m0kko08so0gsc0kwscsws0co
+                      - generic [ref=e362]: traefik.http.services.http-0-m0kko08so0gsc0kwscsws0co.
+                      - generic [ref=e364]: loadbalancer.server.port=8080
+                      - generic [ref=e366]: caddy_0.encode=zstd gzip
+                      - generic [ref=e368]: "caddy_0.handle_path.0_reverse_proxy={{upstreams 8080}}"
+                      - generic [ref=e370]: caddy_0.handle_path=/*
+                      - generic [ref=e372]: caddy_0.header=-Server
+                      - generic [ref=e374]: "caddy_0.try_files={path} /index.html /index.php"
+                      - generic [ref=e376]: caddy_0=http://m0kko08so0gsc0kwscsws0co.134.209.97.63.
+                      - generic [ref=e378]: sslip.io
+                      - generic [ref=e380]: caddy_ingress_network=coolify
+                    - textbox "Editor content" [ref=e382]
+              - generic [ref=e230]:
+                - generic [ref=e232]:
+                  - generic [ref=e233]:
+                    - text: Readonly labels
+                    - img [ref=e236] [cursor=pointer]
+                  - checkbox "Readonly labels" [checked] [ref=e238] [cursor=pointer]
+                - generic [ref=e240]:
+                  - generic [ref=e241]:
+                    - text: Escape special characters in labels?
+                    - img [ref=e244] [cursor=pointer]
+                  - checkbox "Escape special characters in labels?" [checked] [ref=e246] [cursor=pointer]
+              - button "Reset Labels to Defaults" [ref=e248] [cursor=pointer]
+              - heading "Pre/Post Deployment Commands" [level=3] [ref=e249]
+              - generic [ref=e251]:
+                - generic [ref=e252]:
+                  - text: Pre-deployment
+                  - img [ref=e255] [cursor=pointer]
+                - textbox "php artisan migrate" [ref=e257]
+              - generic [ref=e259]:
+                - generic [ref=e260]:
+                  - text: Post-deployment
+                  - img [ref=e263] [cursor=pointer]
+                - textbox "php artisan migrate" [ref=e265]
+  - img
+  - list
+  - generic [ref=e383]:
+    - alert
+    - alert

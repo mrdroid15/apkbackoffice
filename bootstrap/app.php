@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Trust Coolify's Traefik / any upstream proxy for X-Forwarded-* headers
+        // so Laravel + Filament generate correct https:// URLs behind TLS termination.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
