@@ -18,7 +18,6 @@ class PrivacyPolicyTemplate
     public static function render(Apkads $apk): string
     {
         $appName = e((string) $apk->name);
-        $package = e((string) $apk->packagename);
         $effective = now()->toFormattedDateString();
 
         return <<<HTML
@@ -26,9 +25,8 @@ class PrivacyPolicyTemplate
 <p><em>Effective date: {$effective}</em></p>
 
 <p>This Privacy Policy describes how the {$appName} application
-(<code>{$package}</code>, the &ldquo;App&rdquo;) handles information when you
-use it. By installing or using the App you agree to the practices described
-below.</p>
+(the &ldquo;App&rdquo;) handles information when you use it. By installing or
+using the App you agree to the practices described below.</p>
 
 <h3>1. Information We Collect</h3>
 <p>The App may collect the following information:</p>
