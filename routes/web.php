@@ -5,6 +5,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Public privacy policy pages: served only on the privacy-policy subdomain.
+ *
+ * Registered FIRST so that the domain constraint takes precedence when the
+ * request host is privacy-policy.{domain}. The unscoped `/` and `/api` routes
+ * defined below are explicitly overridden to 404 inside this group, otherwise
+ * a request like `https://privacy-policy.example.com/api?package=foo` would
+ * fall through to the unscoped /api handler and expose the JSON endpoint on
+ * the wrong subdomain.
+ *
+ * If the slug exists but the policy body is empty, we 404 rather than render
+ * an empty page — an empty privacy policy is misleading.
+ */
+Route::domain(config('app.privacy_policy_domain'))->group(function (): void {
+    Route::get('/', fn () => abort(404));
+    Route::get('/api', fn () => abort(404));
+
+    Route::get('/{slug}', function (string $slug) {
+        $apk = Apkads::where('privacy_policy_slug', $slug)->first();
+        abort_if($apk === null || empty($apk->privacy_policy), 404);
+        return view('privacy-policy', ['apk' => $apk]);
+    })->where('slug', '[A-Za-z0-9._-]+');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

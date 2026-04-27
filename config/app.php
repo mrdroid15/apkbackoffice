@@ -56,6 +56,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Privacy Policy Subdomain
+    |--------------------------------------------------------------------------
+    |
+    | The host that serves per-apkad privacy policy pages. The web route is
+    | scoped to this domain via Route::domain(), so requests to other hosts
+    | (including the admin panel) never resolve a privacy-policy slug. Set
+    | APP_PRIVACY_POLICY_DOMAIN in .env to flip between local/UAT/prod.
+    |
+    */
+
+    'privacy_policy_domain' => env('APP_PRIVACY_POLICY_DOMAIN', 'privacy-policy.maxwinvault.xyz'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
