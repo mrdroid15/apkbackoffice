@@ -25,7 +25,17 @@ Route::domain(config('app.privacy_policy_domain'))->group(function (): void {
     Route::get('/{slug}', function (string $slug) {
         $apk = Apkads::where('privacy_policy_slug', $slug)->first();
         abort_if($apk === null || empty($apk->privacy_policy), 404);
-        return view('privacy-policy', ['apk' => $apk]);
+
+        // R2 bucket is private, so mint a fresh 1-hour presigned URL per
+        // page load (same pattern as the /api route below). The TTL is
+        // irrelevant in practice — nobody keeps a privacy policy tab open
+        // for an hour, and reload mints a new URL — but it keeps the
+        // bucket from needing to be public-read.
+        $imageUrl = $apk->image
+            ? Storage::disk('s3')->temporaryUrl($apk->image, now()->addHour())
+            : null;
+
+        return view('privacy-policy', ['apk' => $apk, 'imageUrl' => $imageUrl]);
     })->where('slug', '[A-Za-z0-9._-]+');
 });
 
