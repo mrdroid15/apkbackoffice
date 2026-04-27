@@ -126,8 +126,15 @@ COPY docker/php.ini           /usr/local/etc/php/conf.d/zzz-app.ini
 COPY docker/php-fpm.conf      /usr/local/etc/php-fpm.d/zzz-app.conf
 COPY docker/supervisord.conf  /etc/supervisord.conf
 COPY docker/entrypoint.sh     /usr/local/bin/entrypoint.sh
+# Alpine's nginx package ships /var/lib/nginx/ owned by root. With nginx
+# workers running as www-data, any POST body bigger than client_body_buffer_size
+# (default ~16 KB) gets spooled to /var/lib/nginx/tmp/client_body/ and fails
+# with EACCES — Filament "Save" then returns 5xx and shows "Error while
+# loading page". chown the spool dirs to the worker user so spooling works.
 RUN chmod +x /usr/local/bin/entrypoint.sh \
- && mkdir -p /run/nginx /var/log/supervisor
+ && mkdir -p /run/nginx /var/log/supervisor \
+ && mkdir -p /var/lib/nginx/tmp/client_body /var/lib/nginx/tmp/proxy /var/lib/nginx/tmp/fastcgi /var/lib/nginx/tmp/uwsgi /var/lib/nginx/tmp/scgi \
+ && chown -R www-data:www-data /var/lib/nginx /run/nginx
 
 EXPOSE 8080
 
