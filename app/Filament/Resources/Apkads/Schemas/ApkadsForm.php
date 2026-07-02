@@ -9,6 +9,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -32,6 +33,14 @@ class ApkadsForm
                     ->required(),
                 TextInput::make('link')
                     ->required(),
+
+                // Ad kill switch: when off, the public /api lookup returns 404
+                // for this package, so apps stop showing the ad entirely. The
+                // row and its uploaded image are kept for re-enabling later.
+                Toggle::make('is_active')
+                    ->label('Active')
+                    ->helperText('When off, the API stops serving this ad (apps get a 404).')
+                    ->default(true),
 
                 // Public URL preview. On edit pages we have a real slug; on
                 // create we don't, so we show "Save first to get a URL."

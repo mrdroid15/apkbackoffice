@@ -15,12 +15,14 @@ class Apkads extends Model
         'packagename',
         'image',
         'link',
+        'is_active',
         'privacy_policy',
         'privacy_policy_slug',
         'privacy_policy_generated_at',
     ];
 
     protected $casts = [
+        'is_active' => 'boolean',
         'privacy_policy_generated_at' => 'datetime',
     ];
 

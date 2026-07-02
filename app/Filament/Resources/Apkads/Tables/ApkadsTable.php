@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ApkadsTable
@@ -22,6 +23,10 @@ class ApkadsTable
                 ImageColumn::make('image'),
                 TextColumn::make('link')
                     ->searchable(),
+                // Saves immediately on click — no need to open the edit page
+                // to enable/disable an ad.
+                ToggleColumn::make('is_active')
+                    ->label('Active'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

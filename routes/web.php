@@ -65,7 +65,11 @@ Route::get('/api', function (Request $request) {
         ], 400);
     }
 
-    $apk = Apkads::where('packagename', $package)->first();
+    // Disabled ads are indistinguishable from missing ones: same 404 body,
+    // so app clients need no changes when an ad is toggled off.
+    $apk = Apkads::where('packagename', $package)
+        ->where('is_active', true)
+        ->first();
 
     if (! $apk) {
         return response()->json([
